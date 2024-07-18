@@ -1,0 +1,23 @@
+{
+  "heroes": [
+    {
+      "id": 9,
+      "name": "zxcxzc",
+      "description": "xzczxc",
+      "element": "water"
+    },
+    {
+      "id": "id4",
+      "name": "Марсель",
+      "description": "Крутой",
+      "element": "wind"
+    }
+  ],
+  "filters": [
+    "all",
+    "fire",
+    "water",
+    "wind",
+    "earth"
+  ]
+}
