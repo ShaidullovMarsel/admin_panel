@@ -1,4 +1,10 @@
 
+import {useHttp} from '../../hooks/http.hook';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import nextId from 'react-id-generator';
+import { heroesCreated } from '../../actions';
+
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
 // в общее состояние и отображаться в списке + фильтроваться
@@ -9,38 +15,29 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
 
-import {useHttp} from '../../hooks/http.hook';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import nextId from "react-id-generator";
-
-import {heroeAdd } from '../../actions';
-
-
 const HeroesAddForm = () => {
+    const dispatch = useDispatch();
+    const {request} = useHttp();
+
     const [heroName, setHeroName] = useState('');
     const [heroDescr, setHeroDescr] = useState('');
     const [heroElement, setHeroElement] = useState('');
 
-    const dispatch = useDispatch();
-    const {request} = useHttp();
-
     const onSubmitHandler = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const newHero = {
             id: nextId(),
             name: heroName,
             description: heroDescr,
             element: heroElement
         }
-    
-        request("http://localhost:3001/heroes/", 'POST', JSON.stringify(newHero))
-            .then(data => console.log(data, 'Added'))
-            .then(data => dispatch(heroeAdd(newHero)))
+
+        request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+            .then(dispatch(heroesCreated(newHero)))
     }
 
     return (
-        <form className="border p-4 shadow-lg rounded" onSubmit={onSubmitHandler}>
+        <form className="border p-4 shadow-lg rounded">
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
                 <input 
@@ -51,8 +48,8 @@ const HeroesAddForm = () => {
                     id="name" 
                     placeholder="Как меня зовут?"
                     value={heroName}
-                    onChange={(e) => setHeroName(e.target.value)}/>
-                    
+                    onChange={(e) => setHeroName(e.target.value)}
+                    />
             </div>
 
             <div className="mb-3">
@@ -85,7 +82,7 @@ const HeroesAddForm = () => {
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary">Создать</button>
+            <button onClick={onSubmitHandler} type="submit" className="btn btn-primary">Создать</button>
         </form>
     )
 }
