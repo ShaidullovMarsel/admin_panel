@@ -30,3 +30,17 @@ export const heroesCreated = (hero) => {
         payload: hero
     }
 }
+
+export const filtersFetched = (filters) => {
+    return {
+        type: 'FILTERS_FETCHED',
+        payload: filters
+    }
+}
+
+export const activeFilterChanged = (filter) => {
+    return {
+        type: 'ACTIVE_FILTER_CHANGED',
+        payload: filter
+    }
+}
