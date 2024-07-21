@@ -18,10 +18,10 @@ const HeroesFilters = () => {
 
     useEffect(() => {
         request("http://localhost:3001/filters")
-            .then(data => filtersFetched(data))
+            .then(data => dispatch(filtersFetched(data)))
                     // eslint-disable-next-line
 
-    });
+    }, []);
 
     const renderFilters = (arr) => {
         
@@ -36,7 +36,8 @@ const HeroesFilters = () => {
                         id={name} 
                         className={btnClass}
                         onClick={() => dispatch(activeFilterChanged(name))}
-                        >{label}</button>
+                        >{label}
+                    </button>
         })
     }
 
