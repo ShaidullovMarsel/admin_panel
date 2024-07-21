@@ -1,16 +1,28 @@
 {
   "heroes": [
     {
-      "id": "id1",
-      "name": "dfdfdfdf",
-      "description": "dfg",
+      "id": "id3",
+      "name": "adfAF",
+      "description": "ASFASFASF",
+      "element": "water"
+    },
+    {
+      "id": "id7",
+      "name": "adfAF",
+      "description": "ASFASFASF",
       "element": "fire"
     },
     {
-      "id": "id2",
-      "name": "dfdfdfdf",
-      "description": "dfg",
-      "element": "water"
+      "id": "id8",
+      "name": "adfAF",
+      "description": "ASFASFASF",
+      "element": "fire"
+    },
+    {
+      "id": "id1",
+      "name": "SDFDF",
+      "description": "DSFDSF",
+      "element": "fire"
     }
   ],
   "filters": [

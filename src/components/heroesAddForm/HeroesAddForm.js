@@ -1,7 +1,7 @@
 
 import {useHttp} from '../../hooks/http.hook';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import nextId from 'react-id-generator';
 import { heroesCreated } from '../../actions';
 
@@ -16,6 +16,7 @@ import { heroesCreated } from '../../actions';
 // данных из фильтров
 
 const HeroesAddForm = () => {
+    const {filters} = useSelector(state => state)
     const dispatch = useDispatch();
     const {request} = useHttp();
 
@@ -34,6 +35,16 @@ const HeroesAddForm = () => {
 
         request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
             .then(dispatch(heroesCreated(newHero)))
+    }
+
+    const renderFilters = (filters) => {
+        if (filters && filters.length > 0) {
+            return filters.map(({name, label}) => {
+                if (name === 'all') return;
+
+                return <option key={name} value={name}>{label}</option>
+        })
+        }
     }
 
     return (
@@ -75,10 +86,7 @@ const HeroesAddForm = () => {
                     value={heroElement}
                     onChange={(e) => setHeroElement(e.target.value)}>
                     <option >Я владею элементом...</option>
-                    <option value="fire">Огонь</option>
-                    <option value="water">Вода</option>
-                    <option value="wind">Ветер</option>
-                    <option value="earth">Земля</option>
+                    {renderFilters(filters)}
                 </select>
             </div>
 
