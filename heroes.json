@@ -1,16 +1,10 @@
 {
   "heroes": [
     {
-      "id": "id3",
-      "name": "sdad",
-      "description": "asdasdasd",
-      "element": "water"
-    },
-    {
-      "id": "id6",
-      "name": "sdad",
-      "description": "asdasdasd",
-      "element": "wind"
+      "id": "id1",
+      "name": "",
+      "description": "",
+      "element": ""
     }
   ],
   "filters": [

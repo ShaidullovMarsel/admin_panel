@@ -9,7 +9,7 @@ import classNames from 'classnames'
 // Изменять json-файл для удобства МОЖНО!
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
-import { activeFilterChanged, filtersFetched } from "../../actions";
+import { activeFilterChanged, fetchFilters } from "../../actions";
 
 const HeroesFilters = () => {
     const {filters, activeFilter} = useSelector(state => state.filters)
@@ -17,10 +17,9 @@ const HeroesFilters = () => {
     const {request} = useHttp();
 
     useEffect(() => {
-        request("http://localhost:3001/filters")
-            .then(data => dispatch(filtersFetched(data)))
+        dispatch(fetchFilters(request));
                     // eslint-disable-next-line
-
+// eslint-disable-next-line
     }, []);
 
     const renderFilters = (arr) => {
