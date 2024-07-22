@@ -12,7 +12,7 @@ import classNames from 'classnames'
 import { activeFilterChanged, filtersFetched } from "../../actions";
 
 const HeroesFilters = () => {
-    const {filters, activeFilter} = useSelector(state => state)
+    const {filters, activeFilter} = useSelector(state => state.filters)
     const dispatch = useDispatch();
     const {request} = useHttp();
 
